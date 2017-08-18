@@ -1,14 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameViewController" customModule="Mines" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +22,434 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="1mO-W5-X5g" userLabel="Board">
+                                <rect key="frame" x="36" y="276" width="303" height="303"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5F4-6X-VrR">
+                                        <rect key="frame" x="0.0" y="0.0" width="74.5" height="303"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="low-1h-gov" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="74.5" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458756345174" green="0.80502458756345174" blue="0.80502458756345174" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ro-n0-gQX" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="76.5" width="74.5" height="74"/>
+                                                <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.96862745098039216" green="0.46666666666666667" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rC-Yf-WKM" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="152.5" width="74.5" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458756345174" green="0.80502458756345174" blue="0.80502458756345174" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0g-Ww-9cp" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="229" width="74.5" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458756345174" green="0.80502458756345174" blue="0.80502458756345174" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dbg-hr-6nP">
+                                        <rect key="frame" x="76.5" y="0.0" width="74" height="303"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgr-1M-vaY" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frz-e4-2hf" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="76.5" width="74" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DAl-ha-VPX" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="152.5" width="74" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQQ-GU-MiX" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="229" width="74" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="7nM-uc-PiH">
+                                        <rect key="frame" x="152.5" y="0.0" width="74.5" height="303"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ker-3s-uDD" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="74.5" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uI-zz-vz9" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="76.5" width="74.5" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHq-3Y-p5n" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="152.5" width="74.5" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41l-JO-7Sf" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="229" width="74.5" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-zz-oe9">
+                                        <rect key="frame" x="229" y="0.0" width="74" height="303"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muP-B1-8E5" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mu-DN-fEa" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="76.5" width="74" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awF-zR-Sbm" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="152.5" width="74" height="74.5"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.96714387690000003" green="0.46584921759999998" blue="0.39320103039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0J-ai-DbG" customClass="Tile" customModule="Mines" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="229" width="74" height="74"/>
+                                                <color key="backgroundColor" red="0.80502458759999995" green="0.80502458759999995" blue="0.80502458759999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.9671438769035533" green="0.46584921759014608" blue="0.39320103036679838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1mO-W5-X5g" secondAttribute="height" multiplier="1:1" id="UCJ-dr-L0l"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5D-HK-iPD">
+                                <rect key="frame" x="270.5" y="210" width="50" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="46e-Hr-huZ"/>
+                                    <constraint firstAttribute="width" constant="50" id="N2K-HN-RWl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="29"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="0Xj-et-Hbg">
+                                <rect key="frame" x="273.5" y="158" width="45" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40.5" id="Bfx-S7-gb5"/>
+                                    <constraint firstAttribute="width" constant="44.5" id="MgG-RY-SOl"/>
+                                    <constraint firstAttribute="height" constant="26" id="YZj-M4-BIT"/>
+                                    <constraint firstAttribute="height" constant="40.5" id="qHI-M6-zCI"/>
+                                    <constraint firstAttribute="width" constant="70.5" id="wDr-5p-dFW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="20"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Bfx-S7-gb5"/>
+                                        <exclude reference="qHI-M6-zCI"/>
+                                        <exclude reference="wDr-5p-dFW"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="UM2-KO-od9">
+                                <rect key="frame" x="273.5" y="178" width="45" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40.5" id="3w6-eN-Jdq"/>
+                                    <constraint firstAttribute="height" constant="40.5" id="OWq-my-5yB"/>
+                                    <constraint firstAttribute="height" constant="26" id="V8W-QR-FwM"/>
+                                    <constraint firstAttribute="width" constant="44.5" id="lDi-rY-1vU"/>
+                                    <constraint firstAttribute="width" constant="70.5" id="phT-2y-7XZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="20"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3w6-eN-Jdq"/>
+                                        <exclude reference="OWq-my-5yB"/>
+                                        <exclude reference="phT-2y-7XZ"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bomb" translatesAutoresizingMaskIntoConstraints="NO" id="Pp0-k2-TfD">
+                                <rect key="frame" x="56.5" y="155" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Pp0-k2-TfD" secondAttribute="height" multiplier="1:1" id="46g-Fr-KTP"/>
+                                    <constraint firstAttribute="height" constant="50" id="F2d-H1-ek6"/>
+                                    <constraint firstAttribute="width" constant="50" id="FsM-vi-eUX"/>
+                                    <constraint firstAttribute="width" constant="50" id="aq7-St-5ej"/>
+                                    <constraint firstAttribute="height" constant="50" id="hLc-WA-4SI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="46g-Fr-KTP"/>
+                                        <exclude reference="FsM-vi-eUX"/>
+                                        <exclude reference="hLc-WA-4SI"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="n22-Qr-ELx">
+                                <rect key="frame" x="55.5" y="35" width="264" height="85"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mines" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If6-Cd-kTM">
+                                        <rect key="frame" x="37" y="0.0" width="191" height="85"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="iLu-6u-h99"/>
+                                            <constraint firstAttribute="width" constant="191" id="mj6-vd-bMA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="65"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="iLu-6u-h99"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.43529411759999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="If6-Cd-kTM" firstAttribute="centerY" secondItem="n22-Qr-ELx" secondAttribute="centerY" id="DzX-3h-7ci"/>
+                                    <constraint firstItem="If6-Cd-kTM" firstAttribute="height" secondItem="n22-Qr-ELx" secondAttribute="height" id="FXt-tN-tec"/>
+                                    <constraint firstAttribute="height" constant="84.5" id="UWU-Vz-f6t"/>
+                                    <constraint firstAttribute="width" constant="264" id="hCw-Fi-FlT"/>
+                                    <constraint firstAttribute="height" constant="106" id="icH-tS-UGe"/>
+                                    <constraint firstItem="If6-Cd-kTM" firstAttribute="centerX" secondItem="n22-Qr-ELx" secondAttribute="centerX" constant="0.5" id="zXF-Ed-DxN"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="icH-tS-UGe"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="mdf-By-MIO">
+                                <rect key="frame" x="130.5" y="150" width="114" height="96"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="Y5m-gc-mUm">
+                                        <rect key="frame" x="23" y="36" width="68" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="78" id="SD9-AE-qPc"/>
+                                            <constraint firstAttribute="width" constant="37.5" id="XSY-on-qCI"/>
+                                            <constraint firstAttribute="width" constant="68" id="phH-ir-PSR"/>
+                                            <constraint firstAttribute="height" constant="60" id="wrA-jI-2Av"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="60"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="SD9-AE-qPc"/>
+                                                <exclude reference="XSY-on-qCI"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ty9-dC-D8b">
+                                        <rect key="frame" x="22.5" y="5" width="70.5" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70.5" id="7rx-eh-wjW"/>
+                                            <constraint firstAttribute="height" constant="40.5" id="JFv-Cq-pUv"/>
+                                            <constraint firstAttribute="height" constant="34" id="iKT-oQ-nJr"/>
+                                            <constraint firstAttribute="height" constant="40.5" id="zHX-zd-Anv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="31"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="7rx-eh-wjW"/>
+                                                <exclude reference="JFv-Cq-pUv"/>
+                                                <exclude reference="zHX-zd-Anv"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.43529411759999997" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ty9-dC-D8b" firstAttribute="top" secondItem="mdf-By-MIO" secondAttribute="top" constant="5" id="3Ny-tZ-cVk"/>
+                                    <constraint firstItem="Ty9-dC-D8b" firstAttribute="centerX" secondItem="mdf-By-MIO" secondAttribute="centerX" id="Clz-Vq-tLK"/>
+                                    <constraint firstAttribute="height" constant="96" id="J7M-A3-hqp"/>
+                                    <constraint firstAttribute="width" constant="114" id="Jud-hA-NF1"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Ty9-dC-D8b" secondAttribute="bottom" constant="56.5" id="P0s-Qe-1A3"/>
+                                    <constraint firstAttribute="bottom" secondItem="Y5m-gc-mUm" secondAttribute="bottom" id="YBM-9C-orp"/>
+                                    <constraint firstAttribute="width" constant="114" id="YO4-E2-9Oa"/>
+                                    <constraint firstAttribute="height" constant="102" id="mqy-eB-K6b"/>
+                                    <constraint firstAttribute="height" constant="102" id="oaL-MI-LFG"/>
+                                    <constraint firstItem="Y5m-gc-mUm" firstAttribute="centerX" secondItem="mdf-By-MIO" secondAttribute="centerX" id="qZT-FB-KM7"/>
+                                    <constraint firstAttribute="width" secondItem="mdf-By-MIO" secondAttribute="height" multiplier="19:17" id="rGl-x4-dIh"/>
+                                    <constraint firstItem="Y5m-gc-mUm" firstAttribute="top" secondItem="Ty9-dC-D8b" secondAttribute="bottom" constant="-3" id="w6R-Jn-lcr"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Jud-hA-NF1"/>
+                                        <exclude reference="mqy-eB-K6b"/>
+                                        <exclude reference="oaL-MI-LFG"/>
+                                        <exclude reference="rGl-x4-dIh"/>
+                                        <exclude reference="P0s-Qe-1A3"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHP-Os-Omj">
+                                <rect key="frame" x="56.5" y="210" width="50" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="kH3-M8-ua7"/>
+                                    <constraint firstAttribute="width" constant="50" id="lqa-ef-Vb8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="29"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.88164260786802029" green="0.88164260786802029" blue="0.88164260786802029" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1mO-W5-X5g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="17l-KO-OhV"/>
+                            <constraint firstItem="1mO-W5-X5g" firstAttribute="top" secondItem="mdf-By-MIO" secondAttribute="bottom" constant="30" id="23m-Rp-RhA"/>
+                            <constraint firstItem="C5D-HK-iPD" firstAttribute="centerX" secondItem="UM2-KO-od9" secondAttribute="centerX" constant="-0.25" id="2l3-QK-ZJv"/>
+                            <constraint firstItem="UM2-KO-od9" firstAttribute="centerX" secondItem="0Xj-et-Hbg" secondAttribute="centerX" id="AKA-qe-lWz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1mO-W5-X5g" secondAttribute="bottom" constant="30" id="BVA-Bt-KEg"/>
+                            <constraint firstItem="n22-Qr-ELx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IpC-e9-07g"/>
+                            <constraint firstItem="UM2-KO-od9" firstAttribute="top" secondItem="0Xj-et-Hbg" secondAttribute="bottom" constant="-6" id="Op2-1E-gbY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1mO-W5-X5g" secondAttribute="trailing" constant="20" id="TQu-pV-wzp"/>
+                            <constraint firstItem="AHP-Os-Omj" firstAttribute="centerX" secondItem="Pp0-k2-TfD" secondAttribute="centerX" id="Wlc-yb-yif"/>
+                            <constraint firstItem="C5D-HK-iPD" firstAttribute="top" secondItem="UM2-KO-od9" secondAttribute="bottom" constant="6" id="Zee-3m-pQa"/>
+                            <constraint firstItem="mdf-By-MIO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b8k-pl-Bsg"/>
+                            <constraint firstItem="mdf-By-MIO" firstAttribute="leading" secondItem="Pp0-k2-TfD" secondAttribute="trailing" constant="24" id="bL1-Z7-hOZ"/>
+                            <constraint firstItem="mdf-By-MIO" firstAttribute="top" secondItem="n22-Qr-ELx" secondAttribute="bottom" constant="30" id="c0w-g2-1if"/>
+                            <constraint firstItem="UM2-KO-od9" firstAttribute="leading" secondItem="mdf-By-MIO" secondAttribute="trailing" constant="29" id="d7t-5l-lZo"/>
+                            <constraint firstItem="0Xj-et-Hbg" firstAttribute="leading" secondItem="mdf-By-MIO" secondAttribute="trailing" constant="29" id="icB-fF-NTw"/>
+                            <constraint firstItem="1mO-W5-X5g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jZD-eO-Zwy"/>
+                            <constraint firstItem="Pp0-k2-TfD" firstAttribute="top" secondItem="mdf-By-MIO" secondAttribute="top" constant="5" id="naW-ZM-jah"/>
+                            <constraint firstItem="AHP-Os-Omj" firstAttribute="top" secondItem="Pp0-k2-TfD" secondAttribute="bottom" constant="5" id="qr9-4d-Lnv"/>
+                            <constraint firstItem="n22-Qr-ELx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="vJd-r0-h7e"/>
+                            <constraint firstItem="0Xj-et-Hbg" firstAttribute="top" secondItem="mdf-By-MIO" secondAttribute="top" constant="8" id="xEg-fz-bBA"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="tiles" destination="low-1h-gov" collectionClass="NSMutableArray" id="PTY-tM-Yh8"/>
+                        <outletCollection property="tiles" destination="vgr-1M-vaY" collectionClass="NSMutableArray" id="OI1-Cn-BHg"/>
+                        <outletCollection property="tiles" destination="Ker-3s-uDD" collectionClass="NSMutableArray" id="09m-FZ-dXv"/>
+                        <outletCollection property="tiles" destination="muP-B1-8E5" collectionClass="NSMutableArray" id="gBq-kr-j8I"/>
+                        <outletCollection property="tiles" destination="7Ro-n0-gQX" collectionClass="NSMutableArray" id="qon-Fm-MxF"/>
+                        <outletCollection property="tiles" destination="frz-e4-2hf" collectionClass="NSMutableArray" id="Pog-09-sAA"/>
+                        <outletCollection property="tiles" destination="2uI-zz-vz9" collectionClass="NSMutableArray" id="A9E-xi-vcc"/>
+                        <outletCollection property="tiles" destination="4mu-DN-fEa" collectionClass="NSMutableArray" id="v38-We-0ns"/>
+                        <outletCollection property="tiles" destination="4rC-Yf-WKM" collectionClass="NSMutableArray" id="g1w-m3-buY"/>
+                        <outletCollection property="tiles" destination="DAl-ha-VPX" collectionClass="NSMutableArray" id="9mN-XW-Pqi"/>
+                        <outletCollection property="tiles" destination="EHq-3Y-p5n" collectionClass="NSMutableArray" id="a6Q-h6-QSP"/>
+                        <outletCollection property="tiles" destination="awF-zR-Sbm" collectionClass="NSMutableArray" id="03d-nr-qDQ"/>
+                        <outletCollection property="tiles" destination="e0g-Ww-9cp" collectionClass="NSMutableArray" id="hBQ-L1-tB4"/>
+                        <outletCollection property="tiles" destination="cQQ-GU-MiX" collectionClass="NSMutableArray" id="DuS-NY-FKb"/>
+                        <outletCollection property="tiles" destination="41l-JO-7Sf" collectionClass="NSMutableArray" id="1dk-vE-kk3"/>
+                        <outletCollection property="tiles" destination="U0J-ai-DbG" collectionClass="NSMutableArray" id="vFm-0D-SH7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Bomb" width="328" height="329"/>
+    </resources>
 </document>
