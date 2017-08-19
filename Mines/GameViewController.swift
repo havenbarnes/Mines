@@ -70,12 +70,13 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        highScoreCountLabel.text = "\(highScore)"
-        setupButtons()
+        setupUI()
         generateGrid()
     }
     
-    func setupButtons() {
+    func setupUI() {
+        highScoreCountLabel.text = "\(highScore)"
+
         _ = tiles.map { tile in
             tile.addTarget(self,
                            action: #selector(tileSelected(_:)),
