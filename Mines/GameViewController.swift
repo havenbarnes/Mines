@@ -17,6 +17,14 @@ enum GameState {
 
 class GameViewController: UIViewController {
     
+    @IBOutlet var hudElements: [UIView]!
+    
+    @IBOutlet weak var bombImage: UIImageView!
+    @IBOutlet weak var bombLabel: UILabel!
+    
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var levelLabelContainer: UIView!
+    
     @IBOutlet var tiles: [Tile]!
     
     /// Coordinate system for board.
@@ -26,10 +34,21 @@ class GameViewController: UIViewController {
     private var bombTiles: [Tile] = []
     
     /// Current Level
-    private var level = 1
+    private var level = 1 {
+        didSet {
+            levelLabel.text = "\(level)"
+            shake(levelLabelContainer, times: level == 1 ? 1 : 0.5)
+        }
+    }
     
     /// Number of bombs currently in board
-    private var bombCount = 1
+    private var bombCount = 1 {
+        didSet {
+            bombLabel.text = "\(bombCount)"
+            shake(bombLabel, times: bombCount == 1 ? 1 : 0.5)
+            shake(bombImage, times: bombCount == 1 ? 1 : 0.5)
+        }
+    }
     
     /// Game State Enum
     private var state: GameState = .initialized
@@ -87,6 +106,16 @@ class GameViewController: UIViewController {
         completion()
     }
     
+    func shake(_ view: UIView, times: Float) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = times
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x, y: view.center.y - 10))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x, y: view.center.y + 10))
+        view.layer.add(animation, forKey: "position")
+    }
+    
     func animateNewLevel() {
         // Animate column by column
         for x in 0...3 {
@@ -129,7 +158,7 @@ class GameViewController: UIViewController {
             let tile = randomTile(excluding: animatedTiles)
             let originalCenter = tile.center
             
-            UIView.animate(withDuration: 0.4,
+            UIView.animate(withDuration: 0.6,
                            delay: Double(arc4random_uniform(4)) / 10.0,
                            options: .curveLinear,
                            animations: {
@@ -242,10 +271,10 @@ class GameViewController: UIViewController {
     }
     
     func reset() {
-        bombCount = 0
-        level = 0
+        bombCount = 1
+        level = 1
         state = .ended
-        clearBoard(levelWon: true, completion: {
+        clearBoard(levelWon: false, completion: {
             state = .initialized
         })
     }
