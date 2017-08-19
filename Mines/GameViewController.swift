@@ -25,6 +25,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var levelLabelContainer: UIView!
     
+    @IBOutlet weak var highScoreLabel1: UILabel!
+    @IBOutlet weak var highScoreLabel2: UILabel!
+    @IBOutlet weak var highScoreCountLabel: UILabel!
+    
+    
     @IBOutlet var tiles: [Tile]!
     
     /// Coordinate system for board.
@@ -37,7 +42,7 @@ class GameViewController: UIViewController {
     private var level = 1 {
         didSet {
             levelLabel.text = "\(level)"
-            shake(levelLabelContainer, times: level == 1 ? 1 : 0.5)
+            shake(levelLabelContainer, vertical: level != 1)
         }
     }
     
@@ -45,8 +50,18 @@ class GameViewController: UIViewController {
     private var bombCount = 1 {
         didSet {
             bombLabel.text = "\(bombCount)"
-            shake(bombLabel, times: bombCount == 1 ? 1 : 0.5)
-            shake(bombImage, times: bombCount == 1 ? 1 : 0.5)
+            shake(bombLabel, vertical: bombCount != 1)
+            shake(bombImage, vertical: bombCount != 1)
+        }
+    }
+    
+    private var highScore = UserDefaults.standard.integer(forKey: "high_score") {
+        didSet {
+            UserDefaults.standard.set(highScore, forKey: "high_score")
+            highScoreCountLabel.text = "\(highScore)"
+            shake(highScoreCountLabel, vertical: true)
+            shake(highScoreLabel1, vertical: true)
+            shake(highScoreLabel2, vertical: true)
         }
     }
     
@@ -55,6 +70,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        highScoreCountLabel.text = "\(highScore)"
         setupButtons()
         generateGrid()
     }
@@ -83,6 +99,17 @@ class GameViewController: UIViewController {
     }
     
     func buildBoard(exclude selectedTile: Tile) {
+        
+        guard bombCount > 1 else {
+            let exludedTiles = [grid[0][0],
+                                grid[0][3],
+                                grid[3][0],
+                                grid[3][3],
+                                ]
+            bombTiles = [randomTile(excluding: exludedTiles)]
+            return
+        }
+        
         // Apply bombs
         for _ in 0..<bombCount {
             var excludedTiles = bombTiles
@@ -91,7 +118,6 @@ class GameViewController: UIViewController {
             if !bombTiles.contains(bombTile) {
                 bombTiles.append(bombTile)
             }
-            bombTile.setImage(#imageLiteral(resourceName: "Bomb"), for: .normal)
         }
     }
     
@@ -106,13 +132,17 @@ class GameViewController: UIViewController {
         completion()
     }
     
-    func shake(_ view: UIView, times: Float) {
+    func shake(_ view: UIView, vertical: Bool) {
         let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.1
-        animation.repeatCount = times
+        animation.duration = vertical ? 0.15 : 0.1
+        animation.repeatCount = 1
         animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: view.center.x, y: view.center.y - 10))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: view.center.x, y: view.center.y + 10))
+        let from = CGPoint(x: vertical ? view.center.x : view.center.x + 10,
+                           y: vertical ? view.center.y + 10 : view.center.y)
+        animation.fromValue = NSValue(cgPoint: from)
+        let to = CGPoint(x: vertical ? view.center.x : view.center.x - 10,
+                         y: vertical ? view.center.y - 10 : view.center.y)
+        animation.toValue = NSValue(cgPoint: to)
         view.layer.add(animation, forKey: "position")
     }
     
@@ -186,8 +216,6 @@ class GameViewController: UIViewController {
             })
             animatedTiles.append(tile)
         }
-        
-        
     }
     
     func randomTile(excluding buttons: [Tile]) -> Tile {
@@ -205,8 +233,10 @@ class GameViewController: UIViewController {
         case .initialized:
             // Don't allow bomb on first touch
             buildBoard(exclude: tile)
-            analyzeNeighbors(tile)
             state = .inProgress
+
+            analyzeNeighbors(tile)
+            checkForLevelCompletion()
             break
         case .inProgress:
             checkForBomb(tile, completion: {
@@ -226,37 +256,51 @@ class GameViewController: UIViewController {
     }
     
     func checkForBomb(_ selectedTile: Tile, completion: @escaping (Bool) -> ()) {
-        guard !bombTiles.contains(selectedTile) else {
-            let alert = UIAlertController(title: "Game Over!",
-                                          message: nil,
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "😔",
-                                          style: .default,
-                                          handler: {
-                                            action in
-                                            completion(true)
-            }))
-
-            present(alert, animated: true, completion: nil)
-            return
+        if bombTiles.contains(selectedTile) {
+            bombTiles.forEach { $0.setImage(#imageLiteral(resourceName: "Bomb"), for: .normal) }
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                selectedTile.backgroundColor = UIColor("E76F5D")
+            })
+            
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {
+                timer in
+                
+                completion(true)
+            })
+        } else {
+            completion(false)
         }
-        completion(false)
     }
     
     /// Checks to see if level has been won
     func checkForLevelCompletion() {
         if tiles.filter({ !$0.cleared && !self.bombTiles.contains($0) }).isEmpty {
-            advanceLevel()
+            bombTiles.forEach { $0.setImage(#imageLiteral(resourceName: "Bomb"), for: .normal) }
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: {
+                timer in
+                
+                self.advanceLevel()
+            })
         }
     }
     
     /// Checks Neighbor tiles and cleares empty spaces
     func analyzeNeighbors(_ selectedTile: Tile) {
         guard !selectedTile.cleared else { return }
+        
+        selectedTile.backgroundColor = selectedTile.backgroundColor?.darker(by: 10)
+
         let neighbors = selectedTile.neighbors(grid)
         let bombNeighbors = neighbors.filter { bombTiles.contains($0) }
-        selectedTile.backgroundColor = selectedTile.backgroundColor?.darker(by: 10)
-        if bombNeighbors.count > 0 { selectedTile.setTitle("\(bombNeighbors.count)", for: .normal) }
+        
+        if bombNeighbors.count > 0 {
+            selectedTile.setTitle("\(bombNeighbors.count)", for: .normal)
+        } else {
+            neighbors.forEach {
+                analyzeNeighbors($0)
+            }
+        }
     }
     
     func advanceLevel() {
@@ -268,6 +312,10 @@ class GameViewController: UIViewController {
         clearBoard(levelWon: true, completion: {
             state = .initialized
         })
+        
+        if level > highScore {
+            highScore = level
+        }
     }
     
     func reset() {
