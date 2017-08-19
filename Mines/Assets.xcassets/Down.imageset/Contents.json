@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "clock.png",
+      "filename" : "chevron-arrow-down.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "clock-1.png",
+      "filename" : "chevron-arrow-down-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "clock-2.png",
+      "filename" : "chevron-arrow-down-2.png",
       "scale" : "3x"
     }
   ],
