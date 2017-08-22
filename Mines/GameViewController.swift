@@ -75,6 +75,7 @@ class GameViewController: UIViewController {
     }
     
     func setupUI() {
+        if highScore == 0 { highScore = 1 }
         highScoreCountLabel.text = "\(highScore)"
 
         _ = tiles.map { tile in
@@ -123,6 +124,8 @@ class GameViewController: UIViewController {
     }
     
     func clearBoard(levelWon: Bool, completion: () -> ()) {
+        // Disable Tile Clicking
+        view.isUserInteractionEnabled = false
         if levelWon {
             animateNewLevel()
         } else {
@@ -131,6 +134,7 @@ class GameViewController: UIViewController {
         tiles.forEach { $0.cleared = false }
         bombTiles.removeAll()
         completion()
+        view.isUserInteractionEnabled = true
     }
     
     func shake(_ view: UIView, vertical: Bool) {
@@ -323,6 +327,7 @@ class GameViewController: UIViewController {
         bombCount = 1
         level = 1
         state = .ended
+        
         clearBoard(levelWon: false, completion: {
             state = .initialized
         })
